@@ -6,6 +6,9 @@ namespace NSquare.API
     public class User
     {
         public string Id { get; private set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string FullName { get { return String.Format("{0} {1}", this.FirstName.Trim(), this.LastName.Trim()); } }
 
         public User(string id)
         {

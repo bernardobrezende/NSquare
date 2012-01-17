@@ -6,6 +6,8 @@ namespace NSquare.Tests.API
 {
     public class UserTests
     {
+        #region User ID, Equality and HashCode
+
         [Test]
         public void User_Has_Id_And_It_Must_Be_Readonly()
         {
@@ -59,5 +61,36 @@ namespace NSquare.Tests.API
             // Assert
             Assert.AreEqual(firstHashCode, secondHashCode);
         }
+
+        #endregion
+
+        #region User FirstName and LastName
+
+        [Test]
+        public void Users_Have_FirstName_And_LastName()
+        {
+            // Arrange
+            User user = new User("5356321");
+            string firstName = "John";
+            string lastName = "Doe";
+            // Act
+            user.FirstName = firstName;
+            user.LastName = lastName;
+            // Assert
+            Assert.AreEqual(firstName, user.FirstName);
+            Assert.AreEqual(lastName, user.LastName);
+        }
+
+        [Test]
+        public void Users_FullName_Is_FirstName_With_LastName()
+        {
+            User user = new User("4568902");
+            user.FirstName = "John   ";
+            user.LastName = "    Doe";
+            //
+            Assert.AreEqual("John Doe", user.FullName);
+        }
+
+        #endregion
     }
 }

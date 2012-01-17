@@ -21,7 +21,8 @@ namespace NSquare.Tests.API
             TestDelegate createUserWithNullableId = new TestDelegate(() => { new User(null); });
             TestDelegate createUserWithEmptyId = new TestDelegate(() => { new User(String.Empty); });
 
-            Assert.Throws<ArgumentNullException>(createUserWithNullableId);
+            Assert.Throws<ArgumentNullException>(createUserWithNullableId, "User ID cannot be null.");
+            Assert.Throws<ArgumentException>(createUserWithEmptyId, "User ID cannot be empty.");
         }
 
         [Test]
@@ -43,6 +44,20 @@ namespace NSquare.Tests.API
             User secondUserInstance = null;
             // Assert
             Assert.AreNotEqual(firstUserInstance, secondUserInstance);
+        }
+
+        [Test]
+        public void Users_Instances_With_Equal_Ids_Must_Have_Same_HashCode()
+        {
+            // Arrange
+            string userId = "13579842";
+            User firstUserInstance = new User(userId);
+            User secondUserInstance = new User(userId);
+            // Act
+            int firstHashCode = firstUserInstance.GetHashCode();
+            int secondHashCode = secondUserInstance.GetHashCode();
+            // Assert
+            Assert.AreEqual(firstHashCode, secondHashCode);
         }
     }
 }

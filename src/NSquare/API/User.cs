@@ -9,7 +9,8 @@ namespace NSquare.API
 
         public User(string id)
         {
-            Ensure.That(id).IsNotNull().Otherwise.Throw<ArgumentNullException>();
+            Ensure.That(id).IsNotNull().Otherwise.Throw<ArgumentNullException>("User ID cannot be null.");
+            Ensure.That(!id.Equals(String.Empty)).Otherwise.Throw<ArgumentException>("User ID cannot be empty.");
             this.Id = id;
         }
 
@@ -17,6 +18,11 @@ namespace NSquare.API
         {
             User otherUser = obj as User;
             return otherUser != null && this.Id.Equals(otherUser.Id, StringComparison.InvariantCultureIgnoreCase);
+        }
+
+        public override int GetHashCode()
+        {
+            return 49 ^ Id.GetHashCode();
         }
     }
 }

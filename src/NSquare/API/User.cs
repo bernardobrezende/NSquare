@@ -12,5 +12,11 @@ namespace NSquare.API
             Ensure.That(id).IsNotNull().Otherwise.Throw<ArgumentNullException>();
             this.Id = id;
         }
+
+        public override bool Equals(object obj)
+        {
+            User otherUser = obj as User;
+            return otherUser != null && this.Id.Equals(otherUser.Id, StringComparison.InvariantCultureIgnoreCase);
+        }
     }
 }

@@ -23,5 +23,26 @@ namespace NSquare.Tests.API
 
             Assert.Throws<ArgumentNullException>(createUserWithNullableId);
         }
+
+        [Test]
+        public void Users_Instances_With_Same_Id_Must_Be_Equal()
+        {
+            // Arrange
+            string userId = "13579842";
+            User firstUserInstance = new User(userId);
+            User secondUserInstance = new User(userId);
+            // Assert
+            Assert.AreEqual(firstUserInstance, secondUserInstance);
+        }
+
+        [Test]
+        public void Users_Instances_With_Unequal_Ids_Must_Not_Be_Equal()
+        {
+            // Arrange            
+            User firstUserInstance = new User("13579842");
+            User secondUserInstance = null;
+            // Assert
+            Assert.AreNotEqual(firstUserInstance, secondUserInstance);
+        }
     }
 }

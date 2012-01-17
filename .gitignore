@@ -8,5 +8,5 @@ obj/
 *.sln.cache
 TestResult.xml
 
-build/
 pkg/
+buildResult/

@@ -6,6 +6,11 @@ NSquare is a lightweight API for Foursquare, written in C#.
 h2. Requirements
 * .NET Framework 4.0
 
+h2. How to build
+* In order to build the project we recommend two options: 
+** Run build.bat command.
+** Run MSBuild.exe using build.xml as argument.
+
 h2. Code License
 
 NSquare's source code is under the MIT License.
